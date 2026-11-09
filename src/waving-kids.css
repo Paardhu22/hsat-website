@@ -1,0 +1,410 @@
+.waving-farewell {
+  --farewell-sky: #c6e7e8;
+  --farewell-ground: #91b875;
+  --friend-look-x: 0px;
+  --friend-look-y: 0px;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  margin: 15px 0 85px;
+  background: var(--farewell-sky);
+  color: #293b3c;
+}
+.farewell-toolbar {
+  position: absolute;
+  z-index: 1;
+  top: 24px;
+  left: 30px;
+  right: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  pointer-events: none;
+}
+.farewell-toolbar h2 {
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.2;
+}
+.farewell-controls {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  pointer-events: auto;
+}
+.farewell-controls button {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: transparent;
+  color: #49666a;
+  border: 0;
+  border-radius: 50%;
+  opacity: 0.75;
+  font:
+    600 12px/1.4 Manrope,
+    sans-serif;
+  transition:
+    background 0.2s,
+    opacity 0.2s;
+}
+.farewell-controls button:hover {
+  background: #293b3c0d;
+  color: #293b3c;
+  opacity: 1;
+}
+.scene-pause-button {
+  width: 44px;
+  padding: 12px;
+}
+.farewell-illustration {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+.friend-eye-blink {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: friend-blink 5.8s ease-in-out infinite;
+  animation-delay: var(--friend-delay, 0s);
+}
+.friend-pupil {
+  transform: translate(var(--friend-look-x), var(--friend-look-y));
+  transition: transform 0.4s ease-out;
+}
+.friend-wave-arm {
+  transform-origin: 53px 100px;
+  animation: child-wave 3.2s ease-in-out infinite;
+  animation-delay: var(--friend-delay, 0s);
+}
+.friend-head {
+  transform-origin: 0 65px;
+  animation: friend-head-bob 5.2s ease-in-out infinite;
+  animation-delay: var(--friend-delay, 0s);
+}
+.friend-brows {
+  transition: transform 0.3s ease;
+}
+.friend-smile {
+  transform-origin: 0 48px;
+  transition: filter 0.3s ease;
+}
+.dog-head {
+  transform-origin: 0 65px;
+  animation: dog-head-bob 4.8s ease-in-out infinite;
+}
+.dog-ear {
+  animation: dog-ear-flop 4s ease-in-out infinite;
+}
+.ear-left {
+  transform-origin: -58px -61px;
+}
+.ear-right {
+  transform-origin: 58px -61px;
+  animation-delay: -0.65s;
+  animation-direction: reverse;
+}
+.dog-tail {
+  transform-origin: 50px 135px;
+  animation: dog-tail-wag 0.85s ease-in-out infinite;
+}
+.dog-wave-paw {
+  transform-origin: -46px 104px;
+  animation: dog-paw-wave 3s ease-in-out infinite;
+  animation-delay: -0.4s;
+}
+.dog-tongue {
+  animation: dog-pant 1.3s ease-in-out infinite;
+}
+.scene-paused *,
+.scene-paused *:before,
+.scene-paused *:after {
+  animation-play-state: paused !important;
+}
+.scene-reduced .friend-pupil {
+  transform: none;
+  transition: none;
+}
+
+@keyframes friend-blink {
+  0%,
+  40%,
+  44%,
+  100% {
+    transform: scaleY(1);
+  }
+  41.5%,
+  42.5% {
+    transform: scaleY(0.06);
+  }
+}
+@keyframes child-wave {
+  0%,
+  43%,
+  100% {
+    transform: rotate(0);
+  }
+  9%,
+  25% {
+    transform: rotate(-13deg);
+  }
+  17%,
+  34% {
+    transform: rotate(11deg);
+  }
+}
+@keyframes friend-head-bob {
+  0%,
+  100% {
+    transform: rotate(-1deg) translateY(0);
+  }
+  50% {
+    transform: rotate(1deg) translateY(-2px);
+  }
+}
+@keyframes dog-head-bob {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg) translateY(-2px);
+  }
+}
+@keyframes dog-ear-flop {
+  0%,
+  35%,
+  100% {
+    transform: rotate(0);
+  }
+  12% {
+    transform: rotate(8deg);
+  }
+  23% {
+    transform: rotate(-4deg);
+  }
+}
+@keyframes dog-tail-wag {
+  0%,
+  100% {
+    transform: rotate(-12deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+}
+@keyframes dog-paw-wave {
+  0%,
+  50%,
+  100% {
+    transform: rotate(0);
+  }
+  12%,
+  35% {
+    transform: rotate(15deg);
+  }
+  24%,
+  44% {
+    transform: rotate(-9deg);
+  }
+}
+@keyframes dog-pant {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+}
+
+@media (max-width: 850px) {
+  .farewell-toolbar {
+    top: 16px;
+    left: 21px;
+    right: 18px;
+  }
+  .farewell-toolbar h2 {
+    font-size: 25px;
+  }
+  .farewell-controls button {
+    min-height: 44px;
+    font-size: 11px;
+  }
+  .scene-pause-button {
+    width: 44px;
+  }
+  .waving-farewell {
+    margin-bottom: 65px;
+  }
+}
+@media (max-width: 600px) {
+  .farewell-toolbar {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    padding: 22px 19px 0;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .farewell-toolbar h2 {
+    font-size: 27px;
+  }
+  .farewell-controls {
+    gap: 7px;
+  }
+  .farewell-controls button {
+    min-height: 44px;
+  }
+  .scene-pause-button {
+    width: 44px;
+  }
+  .waving-farewell {
+    margin-top: 5px;
+    margin-bottom: 60px;
+  }
+}
+/* Contact's closing landscape extends to the viewport edges and into the footer. */
+.contact-closing {
+  --closing-haze: clamp(110px, 11vw, 190px);
+  --farewell-sky: #c6e7e8;
+  --farewell-ground: var(--canvas);
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  padding-top: var(--closing-haze);
+  background: var(--farewell-sky);
+}
+.contact-closing::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: var(--closing-haze);
+  background: linear-gradient(
+    to bottom,
+    var(--canvas) 0%,
+    #edf3f4 28%,
+    #dcecef 64%,
+    var(--farewell-sky) 100%
+  );
+  pointer-events: none;
+}
+.page-contact .location-section {
+  margin-bottom: 0;
+  padding-bottom: 30px;
+}
+.contact-closing .farewell-section {
+  --farewell-ground: var(--canvas);
+  margin: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--farewell-sky) 0%,
+    var(--farewell-sky) 65%,
+    var(--farewell-ground) 97%
+  );
+}
+.farewell-section .farewell-toolbar {
+  width: min(1280px, calc(100% - 112px));
+  margin-inline: auto;
+  left: 0;
+  right: 0;
+  top: 15px;
+}
+.farewell-section .farewell-illustration {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 calc(100% - clamp(36px, 4vw, 64px)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 calc(100% - clamp(36px, 4vw, 64px)),
+    transparent 100%
+  );
+}
+.closing-footer {
+  background: var(--farewell-ground);
+}
+.closing-footer .site-footer {
+  border-top: 0;
+  padding-top: 27px;
+  padding-bottom: 32px;
+  color: var(--ink);
+}
+.closing-footer .footer-top > p > span,
+.closing-footer .footer-bottom {
+  color: var(--muted);
+}
+.closing-footer .footer-bottom {
+  margin-top: 30px;
+  border-color: var(--line);
+}
+.closing-footer .footer-contact:hover,
+.closing-footer .footer-bottom a:hover {
+  color: var(--accent);
+}
+@media (max-width: 1100px) {
+  .farewell-section .farewell-toolbar {
+    width: calc(100% - 72px);
+  }
+}
+@media (max-width: 850px) {
+  .farewell-section .farewell-toolbar {
+    width: calc(100% - 48px);
+  }
+}
+@media (max-width: 600px) {
+  .contact-closing {
+    --closing-haze: 100px;
+  }
+  .farewell-section .farewell-toolbar {
+    position: relative;
+    width: calc(100% - 40px);
+    top: auto;
+    padding: 0;
+  }
+  .farewell-section .farewell-illustration {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 calc(100% - 28px),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 calc(100% - 28px),
+      transparent 100%
+    );
+  }
+  .closing-footer .site-footer {
+    padding-top: 22px;
+    padding-bottom: 25px;
+  }
+  .page-contact .location-section {
+    padding-bottom: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .waving-farewell *,
+  .waving-farewell *:before,
+  .waving-farewell *:after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .friend-pupil {
+    transform: none;
+  }
+  .farewell-controls button:hover {
+    transform: none;
+  }
+}

@@ -4,6 +4,7 @@ import { Brand, ButtonLink, Icon } from "./components.jsx";
 import { Home, About, Services, Contact } from "./pages.jsx";
 import { usePageMotion } from "./usePageMotion.js";
 import SiteFooter from "./SiteFooter.jsx";
+import WavingKidsScene from "./WavingKidsScene.jsx";
 
 const navigation = [
   ["/", "Home"],
@@ -156,7 +157,16 @@ export default function App() {
         </div>
       </main>
 
-      <SiteFooter />
+      {path === "/contact" ? (
+        <div className="contact-closing">
+          <WavingKidsScene className="farewell-section" />
+          <div className="closing-footer">
+            <SiteFooter />
+          </div>
+        </div>
+      ) : (
+        <SiteFooter />
+      )}
       <span
         className="sr-only"
         role="status"
